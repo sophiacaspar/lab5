@@ -31,22 +31,12 @@ public class CarWashState extends SimState{
 //		
 //	}
 	public static void fast(int fastMachines, double fastLow, double fastHigh){
-		while(fastMachines != 0 ){
-			fastRandom = getTime(fastLow, fastHigh);
-			fastMachines --;
-		}
+		fastRandom = getTime(fastLow, fastHigh);
+		fastMachines --;
 	}
 	public static void slow(int slowMachines, double slowLow, double slowHigh){
-		while(slowMachines != 0 ){
-			slowRandom = getTime(slowLow, slowHigh);
-			slowMachines --;
-		}
-	}
-	public boolean checkWashing(){
-		if(4== max){
-			return true;
-		}
-		return false;
+		slowRandom = getTime(slowLow, slowHigh);
+		slowMachines --;
 	}
 	
 	public static UniformRandomStream getTime(double low, double high){
