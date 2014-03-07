@@ -1,33 +1,45 @@
 package lab5.event;
 
+/**
+ * Denna klass innehåller olika metoder som sätter igång själva simulationen. Tex. lägger till och skickar ut nya event.
+ */
+
 import lab5.state.SimState;
 
 public class SortedSequence {
-	private EventQueue eventQueue;
-	private SimState currentState;
-	private boolean running;
-	
-	public SortedSequence(SimState currentState){
+	public EventQueue eventQueue;
+	public SimState currentState;
+	public static boolean running;
+
+	public SortedSequence(SimState currentState) {
 		this.currentState = currentState;
 		eventQueue = new EventQueue();
 	}
-	
-	public void addToQueue(Event event){
-		 eventQueue.newEvent(event);	 
+
+	public static void addToQueue(Event event) {
+		EventQueue.newEvent(event); // Lägger till ett nytt event till kön under
+									// de förutsättningar som finns i
+									// EventQueue.
 	}
-	public void startQueue(Event event){
+
+	public static void startQueue(Event event) {
 		addToQueue(event);
 		run();
 	}
-	
-	public void run(){
-		running = true;
-		while (running){
-			Event e = eventQueue.sendEvent();
-			e.execute(currentState, this);
+
+	public static void run() {
+		running = true; // När tvätten körs blir running true.
+		while (running) {
+			Event e = EventQueue.sendEvent();
+			e.execute(currentState, this); // När biltvätten körs kommer hela
+											// tiden (i tur och ordning) nya
+											// event skickas under de
+											// förutsättningar som finns i
+											// EventQueue.
 		}
 	}
-	public void stop(){
-		running = false;
+
+	public static void stop() {
+		running = false; // När tvätten inte körs blir running false.
 	}
 }
