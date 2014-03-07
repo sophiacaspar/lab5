@@ -9,7 +9,7 @@ public class CarWashState extends SimState{
 	public static int currentstate;
 	private static long seed = Simulator.seed;
 	
-	public static UniformRandomStream fastRandom; //LAGT TILL
+	public static UniformRandomStream fastRandom; 
 	public static UniformRandomStream slowRandom;
 	public static ExponentialRandomStream exRandom;
 	private static UniformRandomStream Time;
