@@ -1,7 +1,7 @@
 package lab5.main;
 
 /**
- * Detta program simmulerar en biltvätt.
+ * Detta program simmulerar en biltv√§tt.
  */
 
 import java.util.Observable;
@@ -30,25 +30,25 @@ public class Simulator extends Observable {
 		
 		public void main(String[] args) {
 
-		if (!EventQueue.eventQueue.isEmpty()) { //När eventkön inte är tom...
+		if (!EventQueue.eventQueue.isEmpty()) { //N√§r eventk√∂n inte √§r tom...
 
 			while (SimState.currentState != SimState.stop) {
-				//När currentstate inte är stop...
+				//N√§r currentstate inte √§r stop...
 
 				if (SimState.currentState == SimState.start) {
-					SortedSequence.startQueue(EventQueue.sendEvent(event));
+					SortedSequence.startQueue(EventQueue.sendEvent());
 					message = "Start";
 					setChanged();
 					notifyObservers();
 					
 				} else if (SimState.currentState == SimState.leave) {
-					EventQueue.sendEvent(EventQueue.eventQueue.removeFirst());
+					EventQueue.eventQueue.removeFirst();
 					message = "Leave";
 					setChanged();
 					notifyObservers();
 					
 				} else if (SimState.currentState == SimState.arrive) {
-					EventQueue.newEvent(EventQueue.addFirst(event));
+					EventQueue.eventQueue.addFirst(null);
 					message = "Arrive";
 					setChanged();
 					notifyObservers();
@@ -57,10 +57,11 @@ public class Simulator extends Observable {
 			message = "Stop";
 			SortedSequence.stop();
 			EventQueue.eventQueue.clear();
-			//När currentstate är stop så töms listan.
+			//N√§r currentstate √§r stop s√• t√∂ms listan.
 			setChanged();
 			notifyObservers();
 			
 		}
 	}
 }
+
