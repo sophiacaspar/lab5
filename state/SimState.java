@@ -3,6 +3,7 @@ package lab5.state;
 import java.util.Observable;
 
 import lab5.main.Simulator;
+import lab5.state.CarFactory;
 
 public class SimState extends Observable{
 	
@@ -17,7 +18,8 @@ public class SimState extends Observable{
 	public int getState(){
 		return currentState;
 	}
-	public SimState(CarWashState machine){
+	public SimState(){
+		CarWashState machine = fast;
 		if(machine == fast){
 			if(number != Simulator.fastMachines){
 				CarWashState.fast(Simulator.fastMachines, Simulator.fastHigh, Simulator.fastLow);
@@ -33,7 +35,7 @@ public class SimState extends Observable{
 				numbers ++;
 			}
 			else{
-				FIFO.add();
+				FIFO.add(CarFactory.carId);
 			}
 		}
 		

@@ -1,5 +1,6 @@
 package lab5.state;
 
+import lab5.event.*;
 import lab5.main.Simulator;
 import lab5.random.*;
 
@@ -18,18 +19,19 @@ public class CarWashState extends SimState{
 	public CarFactory factory = new CarFactory();
 	
 	double idleTime, queueTime;
+	public Message message;
 	
 	public int getState(){
 		return currentstate;
 	}
 	
-	public CarWashState(CarWashState machine) {
-		super(machine);
+	public CarWashState() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
-//	public CarWashState(int queueSize, int fastMachines, int slowMachines, double fastLow, double fastHigh, double slowLow, double slowHigh, double lambda, long seed){
-//		
-//	}
+	public CarWashState(int queueSize, int fastMachines, int slowMachines, double fastLow, double fastHigh, double slowLow, double slowHigh, double lambda, long seed){
+		
+	}
 	public static void fast(int fastMachines, double fastLow, double fastHigh){
 			fastRandom = getTime(fastLow, fastHigh);
 			fastMachines --;
@@ -43,9 +45,15 @@ public class CarWashState extends SimState{
 		Time = RandomStreams.washMachineTime(low, high, seed);
 		return Time;
 	}
-	
-	
-
-	
-	
+	public void setChange(Event event, String carID){
+		message.CarID = carID;
+		message.currentEvent = event.toString();
+//		message.time = event.getTime();
+		message.idleTime = idleTime;
+		message.queueTime = queueTime;
+//		message.queued = queueAmount;
+		setChanged();
+		notifyObservers(message);
+	}
+		
 }

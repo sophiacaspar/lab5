@@ -25,8 +25,8 @@ public class CarWashState extends SimState{
 		return currentstate;
 	}
 	
-	public CarWashState(CarWashState machine) {
-		super(machine);
+	public CarWashState() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
 //	public CarWashState(int queueSize, int fastMachines, int slowMachines, double fastLow, double fastHigh, double slowLow, double slowHigh, double lambda, long seed){

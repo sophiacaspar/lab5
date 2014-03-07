@@ -6,7 +6,7 @@ import lab5.state.SimState;
 
 public class Event extends Observable {
 	
-	public void execute(SimState simState, EventQueue eventQueue){
+	public void execute(SimState simState, SortedSequence s){
 		//€NDRAT
 	}
 }

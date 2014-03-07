@@ -7,12 +7,13 @@ package lab5.event;
 import lab5.state.SimState;
 
 public class SortedSequence {
-	public EventQueue eventQueue;
-	public SimState currentState;
+	public static EventQueue eventQueue;
+	public static SimState currentStates;
 	public static boolean running;
+	private static SortedSequence s;
 
 	public SortedSequence(SimState currentState) {
-		this.currentState = currentState;
+		currentStates = currentState;
 		eventQueue = new EventQueue();
 	}
 
@@ -31,7 +32,7 @@ public class SortedSequence {
 		running = true; // När tvätten körs blir running true.
 		while (running) {
 			Event e = EventQueue.sendEvent();
-			e.execute(currentState, this); // När biltvätten körs kommer hela
+			e.execute(currentStates, s); // När biltvätten körs kommer hela
 											// tiden (i tur och ordning) nya
 											// event skickas under de
 											// förutsättningar som finns i
