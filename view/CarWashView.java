@@ -22,7 +22,7 @@ public class CarWashView implements Observer{
 	}
 	
 	public void updateOutput(){
-		
+
 	}
 
 	public void update(Observable o, Object arg) {
@@ -31,7 +31,12 @@ public class CarWashView implements Observer{
 			firstOutput();
 			firstLine = false;
 			}
-		
+		else{
+			updateOutput();
+		}
+		if (currentState == "Stop"){
+			
+		}
 	}
 
 }
