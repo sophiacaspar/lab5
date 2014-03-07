@@ -30,5 +30,4 @@ public class SortedSequence {
 	public void stop(){
 		running = false;
 	}
-	//bajs
 }
