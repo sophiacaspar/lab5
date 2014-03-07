@@ -19,17 +19,21 @@ public class SimState extends Observable{
 	}
 	public SimState(CarWashState machine){
 		if(machine == fast){
-			while(number != Simulator.fastMachines){
+			if(number != Simulator.fastMachines){
 				CarWashState.fast(Simulator.fastMachines, Simulator.fastHigh, Simulator.fastLow);
 				number ++;
 			}
-			machine = slow;
-			
+			else{
+				machine = slow;
+			}
 		}
-		else if (machine == slow){
-			while(numbers != Simulator.slowMachines){
+		if (machine == slow){
+			if(numbers != Simulator.slowMachines){
 				CarWashState.slow(Simulator.slowMachines, Simulator.slowHigh, Simulator.slowLow);
 				numbers ++;
+			}
+			else{
+				FIFO.add();
 			}
 		}
 		
