@@ -6,15 +6,15 @@ import java.util.NoSuchElementException;
 
 public class FIFO {
 		
-		private ArrayList<Object> queue = new ArrayList<Object>();
-		int maxSize = CarWashState.max;
+		private static ArrayList<Object> queue = new ArrayList<Object>();
+		private static int maxSize = CarWashState.max;
 		
 		/*
 		 * adds an item to the Queue
 		 * 
 		 * @see Queue#add(java.lang.Object)
 		 */
-	    public void add(Object item){
+	    public static void add(Object item){
 	        	if(queue.size()< maxSize){
 	        		queue.add(item);
 	        	}
