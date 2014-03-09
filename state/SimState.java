@@ -2,6 +2,7 @@ package lab5.state;
 
 import java.util.Observable;
 
+import lab5.event.Message;
 import lab5.main.Simulator;
 
 public class SimState extends Observable{
@@ -17,6 +18,7 @@ public class SimState extends Observable{
 	public int getState(){
 		return currentState;
 	}
+	
 	public SimState(CarWashState machine){
 		if(machine == fast){
 			if(number != Simulator.fastMachines){

@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 
 public class FIFO {
 		
-		private ArrayList<Object> queue = new ArrayList<Object>();
+		private ArrayList<Car> queue = new ArrayList<Car>();
 		int maxSize = CarWashState.max;
 		
 		/*
@@ -14,9 +14,9 @@ public class FIFO {
 		 * 
 		 * @see Queue#add(java.lang.Object)
 		 */
-	    public void add(Object item){
+	    public void add(Car car){
 	        	if(queue.size()< maxSize){
-	        		queue.add(item);
+	        		queue.add(car);
 	        	}
 	        	else{
 	        		SimState.rejected ++;
@@ -39,8 +39,8 @@ public class FIFO {
 	     * @see Queue#first()
 	     */
 	   
-	    public Object first() throws NoSuchElementException{
-	    	Object first;
+	    public Car first() throws NoSuchElementException{
+	    	Car first;
 	    	if(isEmpty()){
 	    		throw new NoSuchElementException();
 	    	}
