@@ -1,25 +1,26 @@
 package lab5.event;
 
 /**
- * Denna klass innehåller olika metoder som sätter igång själva simulationen. Tex. lägger till och skickar ut nya event.
+ * This class contains different methods which starts the simulation. It will, for example add and send out new events.
  */
 
 import lab5.state.SimState;
 
 public class SortedSequence {
-	public EventQueue eventQueue;
-	public SimState currentState;
+	public static EventQueue eventQueue;
+	public static SimState currentStates;
 	public static boolean running;
+	public static SortedSequence s;
 
 	public SortedSequence(SimState currentState) {
-		this.currentState = currentState;
+		currentStates = currentState;
 		eventQueue = new EventQueue();
+		s = this;
 	}
 
 	public static void addToQueue(Event event) {
-		EventQueue.newEvent(event); // Lägger till ett nytt event till kön under
-									// de förutsättningar som finns i
-									// EventQueue.
+		EventQueue.newEvent(event); // Adds a new event to the queue under the
+									// conditions that is in EventQueue.
 	}
 
 	public static void startQueue(Event event) {
@@ -28,18 +29,17 @@ public class SortedSequence {
 	}
 
 	public static void run() {
-		running = true; // När tvätten körs blir running true.
+		running = true;
 		while (running) {
 			Event e = EventQueue.sendEvent();
-			e.execute(currentState, this); // När biltvätten körs kommer hela
-											// tiden (i tur och ordning) nya
-											// event skickas under de
-											// förutsättningar som finns i
+			e.execute(currentStates, s); // While the car wash runs new events
+											// will be sent sequentially under
+											// the conditions that is in
 											// EventQueue.
 		}
 	}
 
 	public static void stop() {
-		running = false; // När tvätten inte körs blir running false.
+		running = false;
 	}
 }
