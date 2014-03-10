@@ -1,9 +1,9 @@
 package lab5.state;
 
+import lab5.event.Event;
 import lab5.event.Message;
 import lab5.main.Simulator;
 import lab5.random.*;
-import lab5.event.Message;
 
 public class CarWashState extends SimState{
 
@@ -64,6 +64,30 @@ public class CarWashState extends SimState{
 	public Car getFirstInLine(){
 		return queue.first();
 	}
+	
+	private double setQueueTime(double time) {
+		double addTime = (time-this.tOfLatestChange)*queue.size();
+		return queueTime += addTime;
+	}
+	
+	private double setIdleTime(double time) {
+		double addTime = (time-this.tOfLatestChange)*(fastCarWash+slowCarWash);
+		return idleTime += addTime;
+	}
+		
+		
+	public void setChange(Event event, String carID){
+		message.CarID = carID;
+		message.idleTime = idleTime;
+		message.queueTime = queueTime;
+		message.queued = queue.size();
+		message.time = event.getTime();
+		this.tOfLatestChange = event.getTime();
+		message.currentEvent = event.toString();
+		setChanged();
+		notifyObservers(message);
+		}
+
 
 	
 	
@@ -87,16 +111,6 @@ public class CarWashState extends SimState{
 		return Time;
 	}
 	
-	 BAAAAAAJS
-	 * public void setChange(Event event, String carID){
-		message.CarID = carID;
-
-		message.idleTime = idleTime;
-		message.queueTime = queueTime;
-		message.queued = queueAmount;
-		setChanged();
-		notifyObservers(message);
-	}
 	
 	*/
 
