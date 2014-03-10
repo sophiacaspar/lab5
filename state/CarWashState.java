@@ -15,9 +15,9 @@ public class CarWashState extends SimState{
 	public static UniformRandomStream slowRandom;
 	public static ExponentialRandomStream exRandom;
 	
-	public int fastCarWash, slowCarWash;
-	public int sizeOfQueue = 0;
-	public int rejected = 0;
+	public static int fastCarWash, slowCarWash;
+	public static int sizeOfQueue = 0;
+	public static int rejected = 0;
 	
 	public FIFO queue;
 	public CarFactory factory = new CarFactory();
