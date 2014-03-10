@@ -3,42 +3,52 @@ package lab5.view;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Oberverable;
+import java.util.Observable;
 
 import lab5.state.SimState;
 
-public class SimView extends Oberservable{
-	protected String State;
+public class SimView extends Observable{
+	protected static String State;
+	private static PrintWriter out;
 	
 	
-	public void convertToString(int state){
+	public static void convertToString(int state){
 		if(SimState.currentState == 0){
 			State = "Stop";
 			outPutFile();
-			setChanged();
-			notifyObersvers();
 		}
 		if(SimState.currentState == 1){
 			State = "Start";
+			outPutFile();
 		}
 		if(SimState.currentState == 2){
 			State = "Leave";
+			outPutFile();
 		}
 		if(SimState.currentState == 3){
 			State = "Arrive";
+			outPutFile();
 		}
 	}
 	
-	public void outPutFile(){
+	public static void outPutFile(){
 		try{
-			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("myfile.txt", true)));
-				if(SimState.currentState == 2 || SimState.currentState == 3){
-					if(SimState.currentState == 2){
-						out.println();
-					}
-					out.println();
+			out = new PrintWriter(new BufferedWriter(new FileWriter("myfile.txt", true)));
+				if(State == "Arrive" || State == "Leave"){
+						out.println(CarWashView.updateOutput());
 				}
+				if(State == "Start"){
+					out.println(CarWashView.firstOutput());
+				
+				}
+				if(State == "Stop"){
+					out.println(CarWashView.stopOutput());
+				}
+				out.close();
+		}
+		catch (IOException e){
 			
 		}
 	}
