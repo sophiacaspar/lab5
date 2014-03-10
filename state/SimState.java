@@ -9,7 +9,7 @@ import lab5.state.CarFactory;
 public class SimState extends Observable{
 	
 	
-	public final static int start=1, leave=2, stop=0; 
+	public final static int start=1, leave=2, stop=0, arrive=3; 
 	public static int numberSlow =Simulator.fastMachines, numberFast=Simulator.slowMachines; 
 	public boolean isEmpty;	
 	public CarWashState fast;
