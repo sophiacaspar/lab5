@@ -7,7 +7,6 @@ import lab5.event.Message;
 
 public class CarWashState extends SimState{
 
-	public static int max;
 	public static int currentstate;
 	private static long seed = Simulator.seed;
 	
@@ -18,7 +17,7 @@ public class CarWashState extends SimState{
 	
 	public int fastCarWash, slowCarWash;
 	
-	public FIFO queue = new FIFO();
+	public FIFO queue;
 	public CarFactory factory = new CarFactory();
 	
 	double idleTime, queueTime, tOfLatestChange;
@@ -28,13 +27,18 @@ public class CarWashState extends SimState{
 		return currentstate;
 	}
 	
-	public CarWashState() {
-		super();
+	//public CarWashState() {
+	//	super();
 		// TODO Auto-generated constructor stub
-	}
-	//public CarWashState(int queueSize, int fastMachines, int slowMachines, double fastLow, double fastHigh, double slowLow, double slowHigh, double lambda, long seed){
-
 	//}
+	public CarWashState(int queueSize, int fastMachines, int slowMachines, double fastLow, double fastHigh, double slowLow, double slowHigh, double lambda, long seed){
+		queue = new FIFO(queueSize);
+		this.fastCarWash = fastMachines;
+		this.slowCarWash = slowMachines;
+		fastRandom = new UniformRandomStream(fastLow, fastHigh, seed);
+		slowRandom = new UniformRandomStream(slowLow, slowHigh, seed);
+		exRandom = new ExponentialRandomStream(lambda ,seed);
+	}
 	
 	
 	public double getNextArrival(){

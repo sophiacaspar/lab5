@@ -7,7 +7,11 @@ import java.util.NoSuchElementException;
 public class FIFO {
 		
 		private ArrayList<Car> queue = new ArrayList<Car>();
-		int maxSize = CarWashState.max;
+		int maxQueueSize;
+		
+	    public FIFO(int queueSize) {
+	    	maxQueueSize = queueSize;
+		}
 		
 		/*
 		 * adds an item to the Queue
@@ -15,7 +19,7 @@ public class FIFO {
 		 * @see Queue#add(java.lang.Object)
 		 */
 	    public void add(Car car){
-	        	if(queue.size()< maxSize){
+	        	if(queue.size()< maxQueueSize){
 	        		queue.add(car);
 	        	}
 	        	else{
@@ -71,6 +75,5 @@ public class FIFO {
 	    public int size(){
 	    	return queue.size();
 	    }
-	    
-	
+	   
 }
