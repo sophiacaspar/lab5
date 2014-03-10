@@ -22,10 +22,11 @@ public class CarWashState extends SimState{
 	public FIFO queue;
 	public CarFactory factory = new CarFactory();
 	
-	double idleTime, queueTime, tOfLatestChange;
+	public static double idleTime, queueTime, tOfLatestChange;
 	public Message message;
 	
 	public int getState(){
+		SimView.convertToString(currentstate);// where should we put it ??? / I just lay it here. 
 		return currentstate;
 	}
 	
@@ -56,15 +57,15 @@ public class CarWashState extends SimState{
 	}
 	
 	public Car getNextCar(){
-		return factory.carFactory();
+		return CarFactory.carFactory();
 	}
 	
 	public boolean addToQueue(Car car){
-		return queue.add(car);
+		return FIFO.add(car);
 	}
 	
 	public Car getFirstInLine(){
-		return queue.first();
+		return (Car) queue.first();
 	}
 	
 	private double setQueueTime(double time) {
@@ -83,8 +84,8 @@ public class CarWashState extends SimState{
 		message.idleTime = idleTime;
 		message.queueTime = queueTime;
 		message.queued = sizeOfQueue;
-		message.time = event.getTime();
-		this.tOfLatestChange = event.getTime();
+		message.time = tOfLatestChange;
+		tOfLatestChange= event.getTime();
 		setChanged();
 		notifyObservers(message);
 		}
