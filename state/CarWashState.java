@@ -73,7 +73,7 @@ public class CarWashState extends SimState{
 	}
 	
 	private double setIdleTime(double time) {
-		double addTime = (time-this.tOfLatestChange)*(SimState.emptyMachines());
+		double addTime = (time-this.tOfLatestChange)*(slowCarWash + fastCarWash);
 		return idleTime += addTime;
 	}
 		
