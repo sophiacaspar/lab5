@@ -4,6 +4,7 @@ import lab5.event.Event;
 import lab5.event.Message;
 import lab5.main.Simulator;
 import lab5.random.*;
+import lab5.view.SimView;
 
 public class CarWashState extends SimState{
 
@@ -66,7 +67,7 @@ public class CarWashState extends SimState{
 	}
 	
 	private double setQueueTime(double time) {
-		double addTime = (time-this.tOfLatestChange)*queue.size();
+		double addTime = (time-this.tOfLatestChange);
 		return queueTime += addTime;
 	}
 	
@@ -83,7 +84,6 @@ public class CarWashState extends SimState{
 		message.queued = queue.size();
 		message.time = event.getTime();
 		this.tOfLatestChange = event.getTime();
-		message.currentEvent = event.toString();
 		setChanged();
 		notifyObservers(message);
 		}

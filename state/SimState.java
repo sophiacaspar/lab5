@@ -10,8 +10,8 @@ public class SimState extends Observable{
 	
 	
 	public final static int start=1, leave=2, stop=0; 
-	public static int rejected=0, arrive=0, number =0, numbers=0;
-	public boolean isEmpty;
+	public static int rejected=0, arrive=0, number =0, numbers=0; //NUMBER BORDE VARA SAMMA SOM FAST- OCH SLOWCARWASH I CARWASHSTATE
+	public boolean isEmpty;										// OCH BÖRJA PÅ TOTALT ANTAL MASKINER OCH SEDAN TICKA NER?
 	public CarWashState fast;
 	public CarWashState slow;
 	public static int currentState;
@@ -19,13 +19,16 @@ public class SimState extends Observable{
 	public int getState(){
 		return currentState;
 	}
-<<<<<<< HEAD
 	
-	public SimState(CarWashState machine){
-=======
-	public SimState(){
+	protected int emptyMachines(){
+		return (number + numbers);
+	}
+
+
+	 public SimState(){
+	 
 		CarWashState machine = fast;
->>>>>>> FETCH_HEAD
+
 		if(machine == fast){
 			if(number != Simulator.fastMachines){
 				CarWashState.fast(Simulator.fastMachines, Simulator.fastHigh, Simulator.fastLow);
@@ -35,6 +38,7 @@ public class SimState extends Observable{
 				machine = slow;
 			}
 		}
+	}
 		if (machine == slow){
 			if(numbers != Simulator.slowMachines){
 				CarWashState.slow(Simulator.slowMachines, Simulator.slowHigh, Simulator.slowLow);
@@ -43,8 +47,8 @@ public class SimState extends Observable{
 			else{
 				FIFO.add(CarFactory.carId);
 			}
-		}
-		
-	}
-	
+		}	
 }
+
+}
+
