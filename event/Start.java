@@ -3,12 +3,24 @@ package lab5.event;
 import lab5.state.CarWashState;
 import lab5.state.SimState;
 
-public class Start {
+public class Start extends Event{
 
-	int time;
+	/** 
+	 * Adds time when to execute
+	 * @param time
+	 */
+	public Start(double time) {
+		super(time);
+	}
 
-	public void execute() {
-		CarWashState.currentstate = SimState.start;
+	@Override
+	public void execute(SimState simState, SortedSequence sortSeq) {
+		CarWashState cwState = (CarWashState)simState;
+		Arrive newArrive = new Arrive(cwState.getNextArrival());
+		newArrive.setCar(cwState.getNextCar());
+		sortSeq.addToQueue(newArrive);
+		cwState.setMessege(this.getTime());
+		cwState.setChange(this, "-");
 		
 	}
 }

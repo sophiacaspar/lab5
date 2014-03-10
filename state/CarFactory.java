@@ -1,13 +1,13 @@
 package lab5.state;
 
 public class CarFactory{
-	int carId;
+	static int carId;
 	
 	public void carMain(){
 		
 	}
 	
-	public Car carFactory(){
+	public static Car carFactory(){
 		Car car = new Car();
 		car.idCar(carId);
 		carId ++;

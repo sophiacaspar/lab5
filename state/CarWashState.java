@@ -14,9 +14,10 @@ public class CarWashState extends SimState{
 	public static UniformRandomStream fastRandom; 
 	public static UniformRandomStream slowRandom;
 	public static ExponentialRandomStream exRandom;
-	private static UniformRandomStream Time;
 	
 	public int fastCarWash, slowCarWash;
+	public int sizeOfQueue = 0;
+	public int rejected = 0;
 	
 	public FIFO queue;
 	public CarFactory factory = new CarFactory();
@@ -58,8 +59,8 @@ public class CarWashState extends SimState{
 		return factory.carFactory();
 	}
 	
-	public void addToQueue(Car car){
-		queue.add(car);
+	public boolean addToQueue(Car car){
+		return queue.add(car);
 	}
 	
 	public Car getFirstInLine(){
@@ -72,7 +73,7 @@ public class CarWashState extends SimState{
 	}
 	
 	private double setIdleTime(double time) {
-		double addTime = (time-this.tOfLatestChange)*(fastCarWash+slowCarWash);
+		double addTime = (time-this.tOfLatestChange)*(SimState.emptyMachines());
 		return idleTime += addTime;
 	}
 		
@@ -81,39 +82,20 @@ public class CarWashState extends SimState{
 		message.CarID = carID;
 		message.idleTime = idleTime;
 		message.queueTime = queueTime;
-		message.queued = queue.size();
+		message.queued = sizeOfQueue;
 		message.time = event.getTime();
 		this.tOfLatestChange = event.getTime();
 		setChanged();
 		notifyObservers(message);
 		}
-
-
 	
-	
-	
-	
-	
-	
-	/**
-	 * 	
-	public static void fast(int fastMachines, double fastLow, double fastHigh){
-		fastRandom = getTime(fastLow, fastHigh);
-		fastMachines --;
+	public void setMessege(double time){
+		message = new Message();
+		message.mashineFast = fastCarWash;
+		message.mashineSlow = slowCarWash;
+		message.queueSize = queue.size();
+		message.rejected = SimState.rejected;
+		setIdleTime(time);
+		setQueueTime(time);
 	}
-	public static void slow(int slowMachines, double slowLow, double slowHigh){
-		slowRandom = getTime(slowLow, slowHigh);
-		slowMachines --;
-	}
-	
-	public static UniformRandomStream getTime(double low, double high){
-		Time = RandomStreams.washMachineTime(low, high, seed);
-		return Time;
-	}
-	
-	
-	*/
-
-	
-	
 }

@@ -6,8 +6,8 @@ import java.util.NoSuchElementException;
 
 public class FIFO {
 		
-		private ArrayList<Car> queue = new ArrayList<Car>();
-		int maxQueueSize;
+		private static ArrayList<Car> queue = new ArrayList<Car>();
+		static int maxQueueSize;
 		
 	    public FIFO(int queueSize) {
 	    	maxQueueSize = queueSize;
@@ -18,12 +18,14 @@ public class FIFO {
 		 * 
 		 * @see Queue#add(java.lang.Object)
 		 */
-	    public void add(Car car){
+	    public static boolean add(Car car){
 	        	if(queue.size()< maxQueueSize){
 	        		queue.add(car);
+	        		return true;
 	        	}
 	        	else{
 	        		SimState.rejected ++;
+	        		return false;
 	        	}
 	    }
 	    /*
