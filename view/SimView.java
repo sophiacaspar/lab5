@@ -38,14 +38,14 @@ public class SimView extends Observable{
 		try{
 			out = new PrintWriter(new BufferedWriter(new FileWriter("myfile.txt", true)));
 				if(State == "Arrive" || State == "Leave"){
-						out.println(CarWashView.updateOutput());
+						//out.println(CarWashView.updateOutput());
 				}
 				if(State == "Start"){
 					out.println(CarWashView.firstOutput());
 				
 				}
 				if(State == "Stop"){
-					out.println(CarWashView.stopOutput());
+					//out.println(CarWashView.stopOutput());
 				}
 				out.close();
 		}

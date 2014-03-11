@@ -28,7 +28,7 @@ public class Simulator extends Observable {
 		
 		String message = "";
 		
-		public void main(String[] args) {
+		public static void main(String[] args) {
 
 		if (!EventQueue.eventQueue.isEmpty()) { // When the event queue isn't empty...
 

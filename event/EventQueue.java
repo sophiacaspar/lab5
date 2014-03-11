@@ -29,7 +29,7 @@ public class EventQueue {
 		}
 	}
 
-	public static void newEvent(Event event) {
+	public void newEvent(Event event) {
 		if (eventQueue.isEmpty()) {
 			eventQueue.addFirst(event);
 			// Om kön är tom läggs objektet först i kön.

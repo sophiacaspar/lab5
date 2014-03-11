@@ -5,7 +5,7 @@ import java.util.Observable;
 import lab5.state.SimState;
 
 public abstract class Event extends Observable {
-	private double time;
+	private static double time;
 	
 	/**
 	 * @param time
@@ -24,7 +24,7 @@ public abstract class Event extends Observable {
 	 * 
 	 * @return time when event happens
 	 */
-	public double getTime(){
+	public static double getTime(){
 		return time;
 	}
 }

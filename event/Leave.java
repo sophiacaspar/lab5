@@ -3,6 +3,7 @@ package lab5.event;
 import lab5.state.Car;
 import lab5.state.CarWashState;
 import lab5.state.SimState;
+import lab5.view.SimView;
 
 public class Leave extends Event{
 	private Car car;
@@ -17,29 +18,29 @@ public class Leave extends Event{
 
 	@Override
 	public void execute(SimState simState, SortedSequence sortSeq) {
-		CarWashState cwState = (CarWashState)simState;
+		CarWashState carWashState = (CarWashState)simState;
 		
-		cwState.setMessege(this.getTime());
+		carWashState.setMessege(this.getTime());
 		if(typeOfWash == 0){
-			Car newCar = cwState.getFirstInLine();
+			Car newCar = carWashState.getFirstInLine();
 			
 			if(newCar == null){
-				cwState.fastCarWash++;
+				carWashState.fastCarWash++;
 			}
 			else {
-				addLeaveEvent(newCar, cwState.getFastWashTime(), sortSeq);
+				addLeaveEvent(newCar, carWashState.getFastWashTime(), sortSeq);
 			}
 		}
 		else{
-			Car newCar = cwState.getFirstInLine();
+			Car newCar = carWashState.getFirstInLine();
 			if(newCar == null){
-				cwState.slowCarWash++;
+				carWashState.slowCarWash++;
 			}
 			else {
-				addLeaveEvent(newCar, cwState.getSlowWashTime(), sortSeq);
+				addLeaveEvent(newCar, carWashState.getSlowWashTime(), sortSeq);
 			}
 		}
-		cwState.setChange(this, car.getId()+"");
+		carWashState.setChange(this, car.getId()+"");
 	}
 	/**
 	 * 
@@ -69,5 +70,10 @@ public class Leave extends Event{
 	 */
 	public void setCarWash(int typeOf){
 		typeOfWash = typeOf;
+	}
+	
+	public String getState(){
+		int currentstate = 2; //2 = leave
+		return SimView.convertToString(currentstate);
 	}
 }

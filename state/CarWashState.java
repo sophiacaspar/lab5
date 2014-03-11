@@ -25,10 +25,10 @@ public class CarWashState extends SimState{
 	public static double idleTime, queueTime, tOfLatestChange;
 	public Message message;
 	
-	public int getState(){
-		SimView.convertToString(currentstate);// where should we put it ??? / I just lay it here. 
-		return currentstate;
-	}
+	//public int getState(){
+	//	SimView.convertToString(currentstate);// where should we put it ??? / I just lay it here. 
+	//	return currentstate;
+	//}
 	
 	//public CarWashState() {
 	//	super();

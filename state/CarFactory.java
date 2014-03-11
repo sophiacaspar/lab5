@@ -1,7 +1,7 @@
 package lab5.state;
 
 public class CarFactory{
-	static int carId;
+	public static int carId;
 	
 	public void carMain(){
 		
@@ -13,5 +13,4 @@ public class CarFactory{
 		carId ++;
 		return car;
 	}
-	
 }
