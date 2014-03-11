@@ -2,38 +2,28 @@ package lab5.state;
 
 import lab5.event.Event;
 import lab5.event.Message;
-import lab5.main.Simulator;
 import lab5.random.*;
 import lab5.view.SimView;
 
 public class CarWashState extends SimState{
 
 	public static int currentstate;
-	private static long seed = Simulator.seed;
-	
 	public static UniformRandomStream fastRandom; 
 	public static UniformRandomStream slowRandom;
 	public static ExponentialRandomStream exRandom;
 	
-	public static int fastCarWash, slowCarWash;
-	public static int sizeOfQueue = 0;
-	public static int rejected = 0;
+	public int fastCarWash;
+	public int slowCarWash;
+	public int sizeOfQueue = 0;
+	public int rejected = 0;
 	
 	public FIFO queue;
 	public CarFactory factory = new CarFactory();
 	
-	public static double idleTime, queueTime, tOfLatestChange;
+	public static double idleTime, queueTime;
+	public double tOfLatestChange;
 	public Message message;
-	
-	//public int getState(){
-	//	SimView.convertToString(currentstate);// where should we put it ??? / I just lay it here. 
-	//	return currentstate;
-	//}
-	
-	//public CarWashState() {
-	//	super();
-		// TODO Auto-generated constructor stub
-	//}
+
 	public CarWashState(int queueSize, int fastMachines, int slowMachines, double fastLow, double fastHigh, double slowLow, double slowHigh, double lambda, long seed){
 		queue = new FIFO(queueSize);
 		this.fastCarWash = fastMachines;

@@ -24,7 +24,6 @@ public class FIFO {
 	        		return true;
 	        	}
 	        	else{
-	        		SimState.rejected ++;
 	        		return false;
 	        	}
 	    }

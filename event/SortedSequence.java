@@ -18,17 +18,17 @@ public class SortedSequence {
 		s = this;
 	}
 
-	public static void addToQueue(Event event) {
+	public void addToQueue(Event event) {
 		eventQueue.newEvent(event); // Adds a new event to the queue under the
 									// conditions that is in EventQueue.
 	}
 
-	public static void startQueue(Event event) {
+	public void startQueue(Event event) {
 		addToQueue(event);
 		run();
 	}
 
-	public static void run() {
+	public void run() {
 		running = true;
 		while (running) {
 			Event e = EventQueue.sendEvent();
@@ -39,7 +39,7 @@ public class SortedSequence {
 		}
 	}
 
-	public static void stop() {
+	public void stop() {
 		running = false;
 	}
 }

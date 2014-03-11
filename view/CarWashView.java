@@ -55,13 +55,11 @@ public class CarWashView extends SimView implements Observer{
 		return updateMessage;
 	}
 
-
-	
 	public static String stopOutput(Observable o, Object arg){
 		Message message = (Message) arg;
 		String exitMessage;
 		String eol = System.getProperty("line.separator");
-			exitMessage = "Total idle machine time: " + String.format("%1$.2f", message.idleTime) + eol
+			exitMessage = "---------------------------------------------------" +eol+"Total idle machine time: " + String.format("%1$.2f", message.idleTime) + eol
 					+ "Total queueing time: " + String.format("%1$.2f", message.queueTime) + eol + "Mean queueing time: " +String.format("%1$.2f", message.queueTime/message.queued) + eol
 					+ "Rejected cars: " + message.rejected;
 			return exitMessage;

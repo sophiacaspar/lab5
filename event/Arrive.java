@@ -23,27 +23,27 @@ public class Arrive extends Event{
 	 */
 	@Override
 	public void execute(SimState simState, SortedSequence sortSeq) {
-		CarWashState cwState = (CarWashState)simState;
-		cwState.setMessege(getTime());
+		CarWashState carWashState = (CarWashState)simState;
+		carWashState.setMessege(getTime());
 		
-		addNextArrive(cwState, sortSeq);
-		if (cwState.fastCarWash!=0) {
-			cwState.fastCarWash--;
-			addLeaveEvent(car, fastWashID, cwState.getFastWashTime(), sortSeq);
+		addNextArrive(carWashState, sortSeq);
+		if (carWashState.fastCarWash!=0) {
+			carWashState.fastCarWash--;
+			addLeaveEvent(car, fastWashID, carWashState.getFastWashTime(), sortSeq);
 		}
-		else if (cwState.slowCarWash!=0) {
-			cwState.slowCarWash--;
-			addLeaveEvent(car, slowWashID, cwState.getSlowWashTime(), sortSeq);
+		else if (carWashState.slowCarWash!=0) {
+			carWashState.slowCarWash--;
+			addLeaveEvent(car, slowWashID, carWashState.getSlowWashTime(), sortSeq);
 		} 
 		else {
-			if(cwState.addToQueue(car)){
-				cwState.sizeOfQueue++;
+			if(carWashState.addToQueue(car)){
+				carWashState.sizeOfQueue++;
 			}else{
-				cwState.rejected++;
+				carWashState.rejected++;
 			}
 			
 		}
-		cwState.setChange(this, car.getId()+"");
+		carWashState.setChange(this, car.getId()+"");
 	}
 	
 	private void addLeaveEvent(Car car,int carWashType, double carWashSpeed, SortedSequence sortSeq){
@@ -57,10 +57,10 @@ public class Arrive extends Event{
 	 * @param simState the CarWashState
 	 * @param sortSeq SortedSequence
 	 */
-	private void addNextArrive(CarWashState cwState, SortedSequence sortSeq){
-		double d = cwState.getNextArrival();
+	private void addNextArrive(CarWashState carWashState, SortedSequence sortSeq){
+		double d = carWashState.getNextArrival();
 		Arrive newEvent = new Arrive(d+getTime());
-		newEvent.setCar(cwState.getNextCar());
+		newEvent.setCar(carWashState.getNextCar());
 		sortSeq.addToQueue(newEvent);
 	}
 	
