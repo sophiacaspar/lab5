@@ -2,7 +2,6 @@ package lab5.event;
 
 import lab5.state.CarWashState;
 import lab5.state.SimState;
-import lab5.view.CarWashView;
 
 public class Stop extends Event{
 
@@ -26,9 +25,4 @@ public class Stop extends Event{
 	public String toString(){
 		return "Stop";
 	}
-	
-	/**public String getState(){
-		int currentstate = 0; //0 = stop
-		return CarWashView.convertToString(currentstate);
-	}*/
 }

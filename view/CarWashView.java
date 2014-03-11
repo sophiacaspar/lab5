@@ -17,22 +17,6 @@ public class CarWashView extends SimView implements Observer{
 		currentState = CarWashState.currentstate;
 	}
 	
-	public static String convertToString(int state){
-		if(SimState.currentState == 0){
-			State = "Stop";
-		}
-		if(SimState.currentState == 1){
-			State = "Start";
-		}
-		if(SimState.currentState == 2){
-			State = "Leave";
-		}
-		if(SimState.currentState == 3){
-			State = "Arrive";
-		}
-		return State;
-	}
-	
 	public void update(Observable o, Object arg) {
 		boolean firstLine = true;
 		if (firstLine) {

@@ -72,7 +72,7 @@ public class CarWashState extends SimState{
 	public void setChange(Event event, String carID){
 		message.CarID = carID;
 		message.idleTime = idleTime;
-		message.currentEvent = SimView.convertToString(currentstate);
+		message.currentEvent = event.toString();
 		message.queueTime = queueTime;
 		message.queued = sizeOfQueue;
 		message.time = tOfLatestChange;

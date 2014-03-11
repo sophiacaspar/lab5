@@ -3,7 +3,6 @@ package lab5.event;
 import lab5.state.Car;
 import lab5.state.CarWashState;
 import lab5.state.SimState;
-import lab5.view.SimView;
 
 public class Leave extends Event{
 	private Car car;
@@ -72,8 +71,7 @@ public class Leave extends Event{
 		typeOfWash = typeOf;
 	}
 	
-	public String getState(){
-		int currentstate = 2; //2 = leave
-		return SimView.convertToString(currentstate);
+	public String toString(){
+		return "Leave";
 	}
 }

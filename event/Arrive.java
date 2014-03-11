@@ -77,8 +77,7 @@ public class Arrive extends Event{
 		return this.car;
 	}
 	
-	public String getState(){
-		int currentstate = 3; //3 = arrive
-		return CarWashView.convertToString(currentstate);
+	public String toString(){
+		return "Arrive";
 	}
 }
