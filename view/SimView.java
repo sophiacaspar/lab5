@@ -14,7 +14,7 @@ public class SimView extends Observable{
 	private static PrintWriter out;
 	
 	
-	public static String convertToString(int state){
+	public static void convertToString(int state){
 		if(SimState.currentState == 0){
 			State = "Stop";
 			outPutFile();
@@ -31,21 +31,21 @@ public class SimView extends Observable{
 			State = "Arrive";
 			outPutFile();
 		}
-		return State;
 	}
 	
 	public static void outPutFile(){
 		try{
+			CarWashView cwView = new CarWashView();
 			out = new PrintWriter(new BufferedWriter(new FileWriter("myfile.txt", true)));
 				if(State == "Arrive" || State == "Leave"){
-						//out.println(CarWashView.updateOutput());
+						out.println(cwView.getUpdate());
 				}
 				if(State == "Start"){
-					out.println(CarWashView.firstOutput());
+					out.println(cwView.getStart());
 				
 				}
 				if(State == "Stop"){
-					//out.println(CarWashView.stopOutput());
+					out.println(cwView.getStop());
 				}
 				out.close();
 		}
