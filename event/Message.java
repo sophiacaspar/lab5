@@ -4,6 +4,7 @@ public class Message {
 		public double time;
 		public int mashineFast;
 		public int mashineSlow;
+		public String currentEvent;
 		public String CarID;
 		public double idleTime;
 		public double queueTime;

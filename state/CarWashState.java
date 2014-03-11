@@ -82,6 +82,7 @@ public class CarWashState extends SimState{
 	public void setChange(Event event, String carID){
 		message.CarID = carID;
 		message.idleTime = idleTime;
+		message.currentEvent = SimView.convertToString(currentstate);
 		message.queueTime = queueTime;
 		message.queued = sizeOfQueue;
 		message.time = tOfLatestChange;
@@ -95,7 +96,7 @@ public class CarWashState extends SimState{
 		message.mashineFast = fastCarWash;
 		message.mashineSlow = slowCarWash;
 		message.queueSize = queue.size();
-		message.rejected = SimState.rejected;
+		message.rejected = rejected;
 		setIdleTime(time);
 		setQueueTime(time);
 	}

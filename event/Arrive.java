@@ -3,6 +3,7 @@ package lab5.event;
 import lab5.state.Car;
 import lab5.state.CarWashState;
 import lab5.state.SimState;
+import lab5.view.SimView;
 
 public class Arrive extends Event{
 	private Car car;// Arriving car
@@ -36,9 +37,9 @@ public class Arrive extends Event{
 		} 
 		else {
 			if(cwState.addToQueue(car)){
-				carWashState.sizeOfQueue++;
+				cwState.sizeOfQueue++;
 			}else{
-				carWashState.rejected++;
+				cwState.rejected++;
 			}
 			
 		}
@@ -74,5 +75,9 @@ public class Arrive extends Event{
 	 */
 	public Car getCar(){
 		return this.car;
+	}
+	public String getState(){
+		int currentstate = 3; //3 = arrive
+		return SimView.convertToString(currentstate);
 	}
 }

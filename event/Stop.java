@@ -2,6 +2,7 @@ package lab5.event;
 
 import lab5.state.CarWashState;
 import lab5.state.SimState;
+import lab5.view.SimView;
 
 public class Stop extends Event{
 
@@ -20,5 +21,10 @@ public class Stop extends Event{
 		sortSeq.stop();
 		cwState.setMessege(this.getTime());
 		cwState.setChange(this, "-");
+	}
+	
+	public String getState(){
+		int currentstate = 0; //0 = stop
+		return SimView.convertToString(currentstate);
 	}
 }
