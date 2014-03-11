@@ -21,7 +21,6 @@ public class Start extends Event{
 		sortSeq.addToQueue(newArrive);
 		cwState.setMessege(this.getTime());
 		cwState.setChange(this, "-");
-		
 	}
 	
 	public String toString(){

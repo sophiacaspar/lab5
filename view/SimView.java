@@ -1,11 +1,11 @@
 package lab5.view;
 
 
-import java.io.PrintWriter;
+//import java.io.PrintWriter;
 import java.util.Observer;
 
 public abstract class SimView implements Observer{
-	private static PrintWriter out;
+	//private static PrintWriter out;
 	
 	/**public static void outPutFile(){
 		try{
