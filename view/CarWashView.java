@@ -53,11 +53,7 @@ public class CarWashView extends SimView implements Observer{
 				+ message.queueSize + "\t" + message.rejected;
 		return updateMessage;
 	}
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> FETCH_HEAD
 	public static String stopOutput(Observable o, Object arg){
 		Message message = (Message) arg;
 		String exitMessage;

@@ -14,23 +14,20 @@ public class SimView extends Observable{
 	private static PrintWriter out;
 	
 	
-	public static void convertToString(int state){
+	public static String convertToString(int state){
 		if(SimState.currentState == 0){
 			State = "Stop";
-			outPutFile();
 		}
 		if(SimState.currentState == 1){
 			State = "Start";
-			outPutFile();
 		}
 		if(SimState.currentState == 2){
 			State = "Leave";
-			outPutFile();
 		}
 		if(SimState.currentState == 3){
 			State = "Arrive";
-			outPutFile();
 		}
+		return State;
 	}
 	
 	public static void outPutFile(){
