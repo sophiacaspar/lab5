@@ -51,10 +51,10 @@ public class CarWashView extends SimView implements Observer{
 	
 	public static String updateOutput(Observable o, Object arg){
 		Message message = (Message) arg;
-		String updateMessage = String.format("%1$.2f", message.time)+"\t" + message.mashineFast + "/t" 
+		String updateMessage = String.format("%1$.2f", message.time)+"\t" + message.mashineFast + "\t" 
 				+ message.mashineSlow + "\t" + message.CarID + "\t" +
-				message.currentEvent + "\t" + String.format("%1$.2f", message.idleTime) + "\t" + String.format("%1$.2f", message.queueTime) +"\t"
-				+ message.queueSize + "\t" + message.rejected;
+				message.currentEvent + "\t" + String.format("%1$.2f", message.idleTime) + "\t\t" + String.format("%1$.2f", message.queueTime) +"\t\t"
+				+ message.queueSize + "\t\t" + message.rejected;
 		return updateMessage;
 	}
 
