@@ -45,7 +45,8 @@ public class CarWashView extends SimView implements Observer{
 				"---------------------------------------------------" + eol 
 				+ "Time \t" + "Fast \t" + "Slow \t" + "Id \t" + "Event \t" + "IdleTime \t"
 				+ "QueueTime \t" + "QueueSize  \t" + "Rejected" + eol;
-		return startMessage;
+		String upDate = updateOutput(o, arg);
+		return startMessage + upDate;
 	}
 	
 	public static String updateOutput(Observable o, Object arg){
