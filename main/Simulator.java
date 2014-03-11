@@ -1,7 +1,7 @@
 package lab5.main;
 
 /**
- * Detta program simmulerar en biltvätt.
+ * This program simulates a car wash.
  */
 
 import java.util.Observable;
@@ -30,34 +30,35 @@ public class Simulator extends Observable {
 		
 		public void main(String[] args) {
 
-		if (!EventQueue.eventQueue.isEmpty()) { //När eventkön inte är tom...
+		if (!EventQueue.eventQueue.isEmpty()) { // When the event queue isn't empty...
 
 			while (SimState.currentState != SimState.stop) {
-				//När currentstate inte är stop...
+				// When currentState isn't stop...
 
-				if (SimState.currentState == SimState.start) {
-					SortedSequence.startQueue(EventQueue.sendEvent());
-					message = "Start";
+				if (SimState.currentState == SimState.start) { //When currentState is start...
+					SortedSequence.startQueue(EventQueue.sendEvent()); //The first event will be sent.
+					message = "Start"; //A message will be printed.
 					setChanged();
 					notifyObservers();
 					
-				} else if (SimState.currentState == SimState.leave) {
-					EventQueue.eventQueue.removeFirst();
-					message = "Leave";
+				} else if (SimState.currentState == SimState.leave) { //When the currentState is leave...
+					EventQueue.eventQueue.removeFirst(); //The first event will be removed.
+					message = "Leave"; //A message will be printed.
 					setChanged();
 					notifyObservers();
 					
-				} else if (SimState.currentState == SimState.arrive) {
+				} else if (SimState.currentState == SimState.arrive) { //When the currentState is arrive...
 					EventQueue.eventQueue.addFirst(null);
-					message = "Arrive";
+					//EventQueue.newEvent(event); ISTÄLLET?
+					message = "Arrive"; //A message will be printed.
 					setChanged();
 					notifyObservers();
 				}
 			}
-			message = "Stop";
+			message = "Stop"; // When currentState is stop a message will be printed.
 			SortedSequence.stop();
 			EventQueue.eventQueue.clear();
-			//När currentstate är stop så töms listan.
+			// The queue will be cleared.
 			setChanged();
 			notifyObservers();
 			
