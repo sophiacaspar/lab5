@@ -1,11 +1,19 @@
 package lab5.main;
 
+/**
+ * This program simulates a car wash.
+ */
+
 import lab5.event.*;
 import lab5.state.CarWashState;
 import lab5.view.CarWashView;
 
 public class Simulator {
-	
+
+	/**
+	 * Here we set some variables which is used on other parts of the code.
+	 */
+
 	public static int fastMachines = 2;
 	public static int slowMachines = 2;
 	public static double fastLow = 2.8;
@@ -17,17 +25,18 @@ public class Simulator {
 	public static int queueSize = 5;
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
 
+		CarWashState carWashState = new CarWashState(queueSize, fastMachines,
+				slowMachines, fastLow, fastHigh, slowLow, slowHigh, lambda,
+				seed);
+
+		SortedSequence sortSeq = new SortedSequence(carWashState);
 		
-		CarWashState carWashState = new CarWashState(queueSize, fastMachines, slowMachines, fastLow, fastHigh, slowLow, slowHigh, lambda, seed);
+		CarWashView carWashView = new CarWashView();
 		
-    	SortedSequence sortSeq = new SortedSequence(carWashState);
-    	CarWashView carWashView = new CarWashView();
-    	carWashState.addObserver(carWashView);
-    	sortSeq.addToQueue(new Stop(15));
-    	sortSeq.startQueue(new Start(0));
+		carWashState.addObserver(carWashView); //Starts addObserver.
+		sortSeq.addToQueue(new Stop(15)); //Determines for how long the simulation will run.
+		sortSeq.startQueue(new Start(0)); //Starts the simulation.
 	}
 
 }
