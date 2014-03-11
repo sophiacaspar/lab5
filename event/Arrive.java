@@ -3,7 +3,7 @@ package lab5.event;
 import lab5.state.Car;
 import lab5.state.CarWashState;
 import lab5.state.SimState;
-import lab5.view.SimView;
+import lab5.view.CarWashView;
 
 public class Arrive extends Event{
 	private Car car;// Arriving car
@@ -76,8 +76,9 @@ public class Arrive extends Event{
 	public Car getCar(){
 		return this.car;
 	}
+	
 	public String getState(){
 		int currentstate = 3; //3 = arrive
-		return SimView.convertToString(currentstate);
+		return CarWashView.convertToString(currentstate);
 	}
 }

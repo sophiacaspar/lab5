@@ -1,7 +1,7 @@
 package lab5.state;
 
 public class CarFactory{
-	public static int carId;
+	public static int carId=0;
 	
 	public void carMain(){
 		

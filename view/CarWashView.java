@@ -12,9 +12,27 @@ import lab5.state.*;
 public class CarWashView extends SimView implements Observer{
 	int currentState;
 	
+	public static String State;
 	public void getCurrentState(){
 		currentState = CarWashState.currentstate;
 	}
+	
+	public static String convertToString(int state){
+		if(SimState.currentState == 0){
+			State = "Stop";
+		}
+		if(SimState.currentState == 1){
+			State = "Start";
+		}
+		if(SimState.currentState == 2){
+			State = "Leave";
+		}
+		if(SimState.currentState == 3){
+			State = "Arrive";
+		}
+		return State;
+	}
+	
 	public void update(Observable o, Object arg) {
 		boolean firstLine = true;
 		if (firstLine) {
@@ -28,6 +46,7 @@ public class CarWashView extends SimView implements Observer{
 			System.out.println(stopOutput(o, arg));
 		}
 	}
+	
 	public static String firstOutput(Observable o, Object arg){
 		String startMessage;
 		String eol = System.getProperty("line.separator");
@@ -63,14 +82,4 @@ public class CarWashView extends SimView implements Observer{
 					+ "Rejected cars: " + message.rejected;
 			return exitMessage;
 	}
-	protected String getStart(){
-		return firstOutput(this, this);
-	}
-	protected String getUpdate(){
-		return updateOutput(this, this);
-	}
-	protected String getStop(){
-		return stopOutput(this, this);
-	}
-
 }
