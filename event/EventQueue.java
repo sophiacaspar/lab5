@@ -1,8 +1,8 @@
 package lab5.event;
 
 /**
- * Denna klass skapar en kö för event, 'eventQueue' och bestämmer hur den ska sorteras och användas.
- * Kön används i Event.
+ * This class creates a queue for events, 'eventQueue' and decides how they will be sorted and used.
+ * The queue will be used in event.
  */
 
 import java.util.LinkedList;
@@ -11,32 +11,31 @@ import java.util.NoSuchElementException;
 public class EventQueue {
 
 	public static LinkedList<Event> eventQueue = new LinkedList<Event>();
-	// Skapar en lista som lägger till nästa event längst bak i kön.
+	// Creates a list that will put the next event at the back of the queue.
 
 	public static Event sendEvent() {
 		Event first;
-		
+
 		if (eventQueue.isEmpty()) {
 			throw new NoSuchElementException("The queue is empty.");
-			// Om kön är tom så kommer ett felmeddelande att skrivas ut.
-			
+			// If the queue is empty an error message will be printed.
+
 		} else {
 			first = eventQueue.getFirst();
 			eventQueue.removeFirst();
 			return first;
-			// Annars returneras det event som ligger först i kön samtidigt som
-			// det tas bort ur kön.
+			//Else the first event in the queue will be returned and then removed.
 		}
 	}
 
 	public void newEvent(Event event) {
 		if (eventQueue.isEmpty()) {
 			eventQueue.addFirst(event);
-			// Om kön är tom läggs objektet först i kön.
-			
+			// If the queue is empty the object will be put first.
+
 		} else {
 			eventQueue.addLast(event);
-			// Annars läggs objektet till sist i kön.
+			// Else it will be put last.
 		}
 	}
 
