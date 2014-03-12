@@ -3,7 +3,6 @@ package lab5.event;
 import lab5.main.Simulator;
 import lab5.state.Car;
 import lab5.state.CarWashState;
-import lab5.state.SimState;
 
 
 public class Arrive extends Event{
