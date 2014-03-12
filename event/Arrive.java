@@ -1,20 +1,20 @@
 package lab5.event;
 
+import lab5.main.Simulator;
 import lab5.state.Car;
 import lab5.state.CarWashState;
-import lab5.state.SimState;
-import lab5.view.CarWashView;
+
 
 public class Arrive extends Event{
 	private Car car;// Arriving car
 	private static final int fastWashID = 0;
 	private static final int slowWashID = 1;
-	
+
 	/**
 	 * @param time
 	 * 
 	 */
-	
+
 	public Arrive(double time) {
 		super(time);
 	}
@@ -22,11 +22,11 @@ public class Arrive extends Event{
 	 * Executes arrive event.
 	 */
 	@Override
-	public void execute(SimState simState, SortedSequence sortSeq) {
-		CarWashState carWashState = (CarWashState)simState;
-		carWashState.setMessege(getTime());
-		
+	public void execute(CarWashState carWashState, SortedSequence sortSeq) {
+		double Time = getTime();
+		if(Time < Simulator.late){
 		addNextArrive(carWashState, sortSeq);
+		carWashState.setMessege(Time);
 		if (carWashState.fastCarWash!=0) {
 			carWashState.fastCarWash--;
 			addLeaveEvent(car, fastWashID, carWashState.getFastWashTime(), sortSeq);
@@ -38,14 +38,20 @@ public class Arrive extends Event{
 		else {
 			if(carWashState.addToQueue(car)){
 				carWashState.sizeOfQueue++;
-			}else{
-				carWashState.rejected++;
 			}
-			
+			else{
+				CarWashState.rejected++;
+			}
 		}
 		carWashState.setChange(this, car.getId()+"");
+		}
+		else{
+			Stop stop = new Stop(Simulator.late);
+			sortSeq.addToQueue(stop);
+		}
+		
 	}
-	
+
 	private void addLeaveEvent(Car car,int carWashType, double carWashSpeed, SortedSequence sortSeq){
 		Leave newLeave = new Leave(carWashSpeed+getTime());
 		newLeave.setCar(car);
@@ -63,7 +69,7 @@ public class Arrive extends Event{
 		newEvent.setCar(carWashState.getNextCar());
 		sortSeq.addToQueue(newEvent);
 	}
-	
+
 	/**Set the the car that arrives.
 	 * @param car
 	 */
@@ -76,7 +82,7 @@ public class Arrive extends Event{
 	public Car getCar(){
 		return this.car;
 	}
-	
+
 	public String toString(){
 		return "Arrive";
 	}
