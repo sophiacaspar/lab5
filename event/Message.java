@@ -2,8 +2,8 @@ package lab5.event;
 
 public class Message {
 		public double time;
-		public int mashineFast;
-		public int mashineSlow;
+		public int machineFast;
+		public int machineSlow;
 		public String currentEvent;
 		public String CarID;
 		public double idleTime;
