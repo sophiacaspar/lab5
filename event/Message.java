@@ -1,16 +1,16 @@
 package lab5.event;
 
 public class Message {
-		public double time;
-		public int machineFast;
-		public int machineSlow;
-		public String currentEvent;
-		public String CarID;
-		public double idleTime;
-		public double queueTime;
-		public int queueSize;
-		public int rejected;
-		public int queued;
-
+		public static double time;
+		public static int machineFast;
+		public static int machineSlow;
+		public static String currentEvent;
+		public static String CarID;
+		public static double idleTime;
+		public static double queueTime;
+		public static double meanQueue;// Lagt till
+		public static int queueSize;
+		public static int rejected;
+		public static int queued;
 
 }
