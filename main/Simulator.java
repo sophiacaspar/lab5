@@ -1,7 +1,7 @@
 package lab5.main;
 
 /**
- * Detta program simmulerar en biltvÃ¤tt.
+ * This program simulates a car wash.
  */
 
 import java.util.Observable;
@@ -13,6 +13,10 @@ import lab5.state.*;
 import lab5.view.CarWashView;
 
 public class Simulator extends Observable {
+	
+	/**
+	 * Here we set some variables which is used on other parts of the code.
+	 */
 
 		public static int fastMachines = 2;
 		public static int slowMachines = 2;
