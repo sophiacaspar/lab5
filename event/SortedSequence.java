@@ -11,6 +11,7 @@ public class SortedSequence {
 	public static SimState currentStates;
 	public static boolean running;
 	public static SortedSequence s;
+	private static boolean running = true;
 
 	public SortedSequence(SimState currentState) {
 		currentStates = currentState;
@@ -29,7 +30,6 @@ public class SortedSequence {
 	}
 
 	public void run() {
-		running = true;
 		while (running) {
 			Event e = EventQueue.sendEvent();
 			e.execute(currentStates, s); // While the car wash runs new events
