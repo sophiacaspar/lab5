@@ -11,27 +11,29 @@ import lab5.state.*;
 
 public class CarWashView extends SimView implements Observer{
 	int currentState;
+	boolean firstLine = true;
 	
-	public static String State;
 	public void getCurrentState(){
-		currentState = CarWashState.currentstate;
+		currentState = CarWashState.currentState;
 	}
-	
 	public void update(Observable o, Object arg) {
-		boolean firstLine = true;
+
 		if (firstLine) {
-			System.out.println(firstOutput(o, arg));
+			System.out.println(firstOutput());
 			firstLine = false;
 			}
-		if (firstLine == false){
-			updateOutput(o, arg);
-		}
-		if (currentState == 0){ //0 = stop
-			System.out.println(stopOutput(o, arg));
+		else if (firstLine == false){
+			if(Message.currentEvent != "Stop"){
+			System.out.println(updateOutput());
+			}
+			else {
+				System.out.println(updateOutput());
+				System.out.println(stopOutput());
+				
+			}
 		}
 	}
-	
-	public static String firstOutput(Observable o, Object arg){
+	public static String firstOutput(){
 		String startMessage;
 		String eol = System.getProperty("line.separator");
 		startMessage = "Fast machines: " + Simulator.fastMachines + eol
@@ -45,26 +47,37 @@ public class CarWashView extends SimView implements Observer{
 				"---------------------------------------------------" + eol 
 				+ "Time \t" + "Fast \t" + "Slow \t" + "Id \t" + "Event \t" + "IdleTime \t"
 				+ "QueueTime \t" + "QueueSize  \t" + "Rejected" + eol;
-		String upDate = updateOutput(o, arg);
+		String upDate = updateOutput();
 		return startMessage + upDate;
 	}
 	
-	public static String updateOutput(Observable o, Object arg){
-		Message message = (Message) arg;
-		String updateMessage = String.format("%1$.2f", message.time)+"\t" + message.mashineFast + "\t" 
-				+ message.mashineSlow + "\t" + message.CarID + "\t" +
-				message.currentEvent + "\t" + String.format("%1$.2f", message.idleTime) + "\t\t" + String.format("%1$.2f", message.queueTime) +"\t\t"
-				+ message.queueSize + "\t\t" + message.rejected;
+	public static String updateOutput(){
+		String updateMessage = String.format("%1$.2f", Message.time)+"\t" + Message.machineFast + "\t" 
+				+ Message.machineSlow + "\t" + Message.CarID + "\t" +
+				Message.currentEvent + "\t" + String.format("%1$.2f", Message.idleTime) + " \t\t" + String.format("%1$.2f", Message.queueTime) +"\t\t"
+				+ Message.queueSize + "\t\t" + Message.rejected;
 		return updateMessage;
 	}
-
-	public static String stopOutput(Observable o, Object arg){
-		Message message = (Message) arg;
+	
+	public static String stopOutput(){
 		String exitMessage;
 		String eol = System.getProperty("line.separator");
-			exitMessage = "---------------------------------------------------" +eol+"Total idle machine time: " + String.format("%1$.2f", message.idleTime) + eol
-					+ "Total queueing time: " + String.format("%1$.2f", message.queueTime) + eol + "Mean queueing time: " +String.format("%1$.2f", message.queueTime/message.queued) + eol
-					+ "Rejected cars: " + message.rejected;
+			exitMessage = "---------------------------------------------------" + eol 
+					+ "Total idle machine time: " + String.format("%1$.2f", Message.idleTime) + eol
+					+ "Total queueing time: " + String.format("%1$.2f", Message.queueTime) + eol
+					+ "Mean queueing time: " +String.format("%1$.2f", Message.meanQueue) 
+					+ eol + "Rejected cars: " + Message.rejected;
 			return exitMessage;
 	}
+	public String getStart(){
+		return firstOutput();
+	}
+	public String getUpdate(){
+		return updateOutput();
+	} 
+	public String getStop(){
+		return stopOutput();
+	}
+
+
 }
