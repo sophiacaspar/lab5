@@ -2,6 +2,7 @@ package lab5.event;
 
 
 import lab5.state.CarWashState;
+import lab5.state.SimState;
 
 public class Start extends Event{
 
@@ -29,6 +30,12 @@ public class Start extends Event{
 	}
 	public String toString(){
 		return "Start";
+	}
+
+	@Override
+	public void execute(SimState simState, SortedSequence sortSeq) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

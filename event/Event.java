@@ -2,6 +2,7 @@ package lab5.event;
 
 import java.util.Observable;
 
+import lab5.state.CarWashState;
 import lab5.state.SimState;
 
 public abstract class Event extends Observable {
@@ -19,7 +20,8 @@ public abstract class Event extends Observable {
 	 * @param simState current state of the simulator.
 	 * @param sortSeq, SortedSequence that executes the event.
 	 */
-	public abstract void execute(SimState simState, SortedSequence sortSeq);
+	public abstract void execute(CarWashState carWashState, SortedSequence sortSeq) ;
+	// TODO Auto-generated method stub
 	/**
 	 * 
 	 * @return time when event happens
@@ -27,5 +29,6 @@ public abstract class Event extends Observable {
 	public double getTime(){
 		return time;
 	}
+
 }
 

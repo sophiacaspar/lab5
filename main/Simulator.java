@@ -39,6 +39,3 @@ public class Simulator extends Observable {
 	    	sortSeq.startQueue(new Start(0));
 		}
 	}
-
-
-}
