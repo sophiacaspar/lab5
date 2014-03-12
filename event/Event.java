@@ -3,32 +3,47 @@ package lab5.event;
 import java.util.Observable;
 
 import lab5.state.CarWashState;
+<<<<<<< HEAD
 import lab5.state.SimState;
+=======
+
+>>>>>>> FETCH_HEAD
 
 public abstract class Event extends Observable {
-	private double time;
-	
+	private static double times= 0.00;
+
 	/**
 	 * @param time
 	 *  creates time that the event class can use.
 	 */
 	public Event(double time){
-		this.time = time;
+		times = time;
 	}
 	/**
 	 * Called when the event happens. 
-	 * @param simState current state of the simulator.
+	 * @param carWashState current state of the simulator.
 	 * @param sortSeq, SortedSequence that executes the event.
 	 */
+<<<<<<< HEAD
 	public abstract void execute(CarWashState carWashState, SortedSequence sortSeq) ;
 	// TODO Auto-generated method stub
+=======
+	public abstract void execute(CarWashState simState, SortedSequence sortSeq);
+>>>>>>> FETCH_HEAD
 	/**
 	 * 
 	 * @return time when event happens
 	 */
 	public double getTime(){
-		return time;
+		return times;
 	}
+	public static double getsTime(){
+		return times;
+	}
+<<<<<<< HEAD
 
 }
+=======
+>>>>>>> FETCH_HEAD
 
+}

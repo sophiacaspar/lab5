@@ -3,24 +3,25 @@ package lab5.state;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
+import lab5.main.Simulator;
+
 
 public class FIFO {
 		
-		private static ArrayList<Car> queue = new ArrayList<Car>();
-		static int maxQueueSize;
+		private static ArrayList<Object> queue = new ArrayList<Object>();
+		private static int maxSize;
 		
-	    public FIFO(int queueSize) {
-	    	maxQueueSize = queueSize;
+		public FIFO(int max){
+			maxSize = Simulator.queueSize;
 		}
-		
 		/*
 		 * adds an item to the Queue
 		 * 
 		 * @see Queue#add(java.lang.Object)
 		 */
-	    public static boolean add(Car car){
-	        	if(queue.size()< maxQueueSize){
-	        		queue.add(car);
+	    public static boolean add(Object item){
+	        	if(queue.size() < maxSize){
+	        		queue.add(item);
 	        		return true;
 	        	}
 	        	else{
@@ -31,10 +32,11 @@ public class FIFO {
 	     * Checks if the queue is empty 
 	     * @see Queue#removeFirst()
 	     */
-	    public void firstInLine() throws NoSuchElementException{
+	    public void firstInLine(){
 	    	if(queue.isEmpty()){
 	    		throw new NoSuchElementException();
 	    	}
+	    	CarWashState.rejected++;
 	    	queue.remove(0);
 	    }
 	    
@@ -44,14 +46,16 @@ public class FIFO {
 	     * @see Queue#first()
 	     */
 	   
-	    public Car first() throws NoSuchElementException{
-	    	Car first;
-	    	if(isEmpty()){
-	    		throw new NoSuchElementException();
+	    public Object first(){ //throws NoSuchElementException{
+	    	Object first;
+	    	if(queue.isEmpty()){
+	    		return null;
 	    	}
+	    	else{
 	    	first = queue.get(0);
 	    	firstInLine();
 	    	return first;
+	    	}
 	    }
 	    
 	     /*
@@ -76,5 +80,7 @@ public class FIFO {
 	    public int size(){
 	    	return queue.size();
 	    }
-	   
+	    
+	
 }
+
