@@ -9,7 +9,6 @@ import lab5.state.SimState;
 public class SortedSequence {
 	public static EventQueue eventQueue;
 	public static SimState currentStates;
-	public static boolean running;
 	public static SortedSequence s;
 	private static boolean running = true;
 
