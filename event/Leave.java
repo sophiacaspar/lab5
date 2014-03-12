@@ -20,7 +20,7 @@ public class Leave extends Event{
 	@Override
 	public void execute(CarWashState carWashState, SortedSequence sortSeq) {
 		double Time = getTime();
-		if(Time < Simulator.late- ){
+		if(Time < Simulator.late){
 		carWashState.setMessege(getTime());
 		if(typeOfWash == 0){
 			Car newCar = carWashState.getFirstInLine();

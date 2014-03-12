@@ -1,7 +1,6 @@
 package lab5.event;
 
 import lab5.state.CarWashState;
-import lab5.state.SimState;
 
 public class Stop extends Event{
 
@@ -15,8 +14,8 @@ public class Stop extends Event{
 	}
 
 	@Override
-	public void execute(SimState simState, SortedSequence sortSeq) {
-		CarWashState cwState = (CarWashState)simState;
+	public void execute(CarWashState carWashState, SortedSequence sortSeq) {
+		CarWashState cwState = carWashState;
 		sortSeq.stop();
 		cwState.setMessege(this.getTime());
 		cwState.setChange(this, "-");

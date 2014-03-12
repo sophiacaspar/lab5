@@ -4,15 +4,15 @@ package lab5.event;
  * This class contains different methods which starts the simulation. It will, for example add and send out new events.
  */
 
-import lab5.state.SimState;
+import lab5.state.CarWashState;
 
 public class SortedSequence {
 	public static EventQueue eventQueue;
-	public static SimState currentStates;
+	public static CarWashState currentStates;
 	public static SortedSequence s;
 	private static boolean running = true;
 
-	public SortedSequence(SimState currentState) {
+	public SortedSequence(CarWashState currentState) {
 		currentStates = currentState;
 		eventQueue = new EventQueue();
 		s = this;
